@@ -13,13 +13,14 @@ Rails.application.routes.draw do
     get  "/" => "homes#top"
     resources :customers, only: [:index, :show, :edit, :update]
     resources :items, only: [:new, :show, :edit, :index, :create, :update]
-    resources :orders, only: [:new, :index, :show]
+    resources :orders, only: [:show, :update]
   end
 
   scope module: :public do
     resources :cart_items, only: [:index, :create, :destroy, :update]
     resources :customers, only: [:show, :update, :edit, :quit]
     resources :items, only: [:index, :show]
+    resources :orders, only: [:new, :index, :show, :create]
     root to: "homes#top"
     get '/home/about' => 'homes#about', as: 'about'
   end

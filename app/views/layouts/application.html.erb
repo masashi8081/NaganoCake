@@ -18,7 +18,7 @@
         <%= link_to "ログアウト", destroy_customer_session_path, method: :delete %>
       </li>
       <li>
-        <%= link_to "マイページ", customer_path(@customer) %>
+        <%= link_to "マイページ", customer_path(id: current_customer) %>
       </li>
     <% else %>
       <li>
@@ -26,6 +26,21 @@
       </li>
       <li>
         <%= link_to "ログイン", new_customer_session_path %>
+      </li>
+    <% end %>
+
+    <% if admin_signed_in? %>
+      <li>
+        <%= link_to "商品一覧", admin_items_path %>
+      </li>
+      <li>
+        <%= link_to "会員一覧", admin_customers_path %>
+      </li>
+      <li>
+        <%= link_to "注文履歴一覧" %>
+      </li>
+      <li>
+        <%= link_to "ログアウト", destroy_admin_session_path, method: :delete %>
       </li>
     <% end %>
   </header>
