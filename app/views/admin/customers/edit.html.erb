@@ -6,7 +6,7 @@
   </div>
   <%= form_with model: @customer, url: admin_customer_path(@customer.id), local: :true, method: :put do |f| %>
     <div class="row">
-      <div class="col-2 offset-md-1"><%= f.label "お名前" %></div>
+      <div class="col-2 offset-md-1"><%= f.label "名前" %></div>
       <div class="col-1 text-right pr-0"><%= f.label "(姓)" %></div>
       <div class="col-2"><%= f.text_field :last_name, :size => "10", placeholder: "長野" %></div>
       <div class="col-1 text-right pr-0"><%= f.label "(名)" %></div>
