@@ -19,7 +19,9 @@ Rails.application.routes.draw do
   scope module: :public do
     delete "/cart_items/destroy_all" => "cart_items#destroy_all"
     resources :cart_items, only: [:index, :create, :destroy, :update]
-    resources :customers, only: [:show, :update, :edit, :quit]
+    get "/customers/quit" => "customers#quit"
+    patch "/customers/out" => "customers#out"
+    resources :customers, only: [:show, :update, :edit]
     resources :items, only: [:index, :show]
     resources :orders, only: [:new, :index, :show, :create]
     root to: "homes#top"

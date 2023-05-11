@@ -17,4 +17,8 @@ class Customer < ApplicationRecord
   validates :telephone_number, presence: true
   validates :email, uniqueness: true
 
+  def active_for_authentication?
+    super && (is_deleted == false)
+  end
+
 end

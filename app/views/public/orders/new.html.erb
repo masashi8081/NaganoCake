@@ -4,8 +4,11 @@
       <h2>注文情報入力</h2>
       <%= form_with model: @order,local:true do |f| %>
       <h4 class="h4 mt-2"><b>支払い方法</b></h4>
-      <%= f.radio_button :payment_method, 0, checked: true, class: "ml-4" %>クレジットカード<br>
-      <%= f.radio_button :payment_method, 1, class: "ml-4"  %>銀行振込
+      <%= f.radio_button :payment_method, Order.payment_methods.key(0), checked: true, class: "ml-4" %>
+      <%= f.label :payment_method_credit_card, Order.payment_methods_i18n[:credit_card] %>
+      <%= f.radio_button :payment_method, Order.payment_methods.key(1), class: "ml-4"  %>
+      <%= f.label :payment_method_transfer, Order.payment_methods_i18n[:transfer] %>
+
       <h4 class="h4 mt-2"><b>お届け先</b></h4>
       <%= f.radio_button :address, 0, checked: true, class: "ml-4"  %>ご自身の住所<br>
       <div class="ml-5"><%= "〒#{current_customer.postal_code} #{current_customer.address}" %></div>
