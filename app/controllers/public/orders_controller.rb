@@ -12,6 +12,14 @@ class Public::OrdersController < ApplicationController
     @order = Order.find(params[:id])
   end
 
+  def confirm
+    @order = Order.new(order_params)
+    @address = Address.find(params[:order][:address_id])
+    @order.postal_code = @address.postal_code
+    @order.address = @address.address
+    @order.name = @address.name
+  end
+
   def create
     @order = Order.new(order_params)
     @order.customer_id = current_customer.id
@@ -22,7 +30,7 @@ class Public::OrdersController < ApplicationController
         order_detail = OrderDetail.new
         order_detail.item_id = cart_item.item_id
         order_detail.order_id = @order.id
-        order_detail.amount = cart_item.amount
+        order_detail.total_amount = cart_item.total_amount
         order_detail.with_tax_price = change_price_excluding_tax(cart_item.item.with_tax_price)
         if order_detail.save
           @cart_items.destroy_all

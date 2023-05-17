@@ -2,7 +2,7 @@
 <html>
   <head>
     <title>NaganoCake</title>
-    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <meta name="viewport" content="width=device-width,initial-scale=1, maximum-scale=1">
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
 
@@ -13,49 +13,67 @@
   <body>
 
     <header>
-    <% if customer_signed_in? %>
-      <li>
-        <%= link_to "マイページ", customer_path(id: current_customer) %>
-      </li>
-      <li>
-        <%= link_to "商品一覧", items_path %>
-      </li>
-      <li>
-        <%= link_to "カート", cart_items_path %>
-      </li>
-      <li>
-        <%= link_to "ログアウト", destroy_customer_session_path, method: :delete %>
-      </li>
-    <% else %>
-      <li>
-        <%= link_to "About", about_path %>
-      </li>
-      <li>
-        <%= link_to "商品一覧", items_path %>
-      </li>
-      <li>
-        <%= link_to "新規登録", new_customer_registration_path %>
-      </li>
-      <li>
-        <%= link_to "ログイン", new_customer_session_path %>
-      </li>
-    <% end %>
+       <nav class="navbar navbar-expand-lg bg-light navbar-right">
+        <div class="container">
+          <a class="navbar-brand" href="/"><%= image_tag '/assets/logo1.jpeg', :size => "250x50" %></a>
+          <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+          <div class="collapse navbar-collapse" id="navbarNavDropdown">
+            <ul class="navbar-nav ml-auto">
+            <% if admin_signed_in? %>
+              <li class="nav-item">
+                <%= link_to "商品一覧", admin_items_path %>
+              </li>
+              <li class="nav-item">
+                <%= link_to "会員一覧", admin_customers_path %>
+              </li>
+              <li class="nav-item">
+                <%= link_to "注文履歴一覧" %>
+              </li>
+              <li class="nav-item">
+                <%= link_to "ログアウト", destroy_admin_session_path, method: :delete %>
+              </li>
 
-    <% if admin_signed_in? %>
-      <li>
-        <%= link_to "商品一覧", admin_items_path %>
-      </li>
-      <li>
-        <%= link_to "会員一覧", admin_customers_path %>
-      </li>
-      <li>
-        <%= link_to "注文履歴一覧" %>
-      </li>
-      <li>
-        <%= link_to "ログアウト", destroy_admin_session_path, method: :delete %>
-      </li>
-    <% end %>
-  </header>
+           <% elsif customer_signed_in? %>
+              <li class="nav-item">
+               <%= link_to "マイページ", customer_path(id: current_customer) %>
+              </li>
+              <li class="nav-item">
+                <%= link_to "商品一覧", items_path %>
+              </li>
+              <li class="nav-item">
+                <%= link_to "カート", cart_items_path %>
+              </li>
+              <li class="nav-item">
+                <%= link_to "ログアウト", destroy_customer_session_path, method: :delete %>
+              </li>
+            <% else %>
+              <li class="nav-item">
+                <%= link_to "About", about_path %>
+              </li>
+              <li class="nav-item">
+                <%= link_to "商品一覧", items_path %>
+              </li>
+              <li class="nav-item">
+                <%= link_to "新規登録", new_customer_registration_path %>
+              </li>
+              <li class="nav-item">
+                <%= link_to "ログイン", new_customer_session_path %>
+              </li>
+            <% end %>
+          </div>
+       </header>
     <%= yield %>
+
+    <footer>
+      <div class="container mt-5">
+        <div class="row">
+          <div class="col mx-auto">
+            <p class="text-center">CopyRight nagano-cake.inc</p>
+          </div>
+        </div>
+      </div>
+    </footer>
   </body>
 </html>
