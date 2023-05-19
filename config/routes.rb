@@ -23,6 +23,8 @@ Rails.application.routes.draw do
     patch "/customers/out" => "customers#out"
     resources :customers, only: [:show, :update, :edit]
     resources :items, only: [:index, :show]
+    post "/orders/confirm" => "orders#confirm"
+    get "/orders/thanks" => "orders#thanks"
     resources :orders, only: [:new, :index, :show, :create]
     root to: "homes#top"
     get '/home/about' => 'homes#about', as: 'about'
