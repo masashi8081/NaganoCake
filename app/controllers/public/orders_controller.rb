@@ -2,6 +2,7 @@ class Public::OrdersController < ApplicationController
 
   before_action :authenticate_customer!
 
+
   def new
     @order = Order.new
     @addresses = current_customer.address
@@ -13,7 +14,9 @@ class Public::OrdersController < ApplicationController
 
   def show
     @order = Order.find(params[:id])
-    @order.total_amount = current_customer.id
+    @order_items = Item.where(order_id: @order.id)
+
+
   end
 
   def confirm
@@ -42,7 +45,7 @@ class Public::OrdersController < ApplicationController
           @cart_items.destroy_all
         end
    end
-      redirect_to orders_confirm_path
+      redirect_to orders_thanx_path
     else
     end
  end

@@ -24,10 +24,10 @@ Rails.application.routes.draw do
     resources :customers, only: [:show, :update, :edit]
     resources :items, only: [:index, :show]
     post "/orders/confirm" => "orders#confirm"
-    get "/orders/thanks" => "orders#thanks"
+    get "/orders/thanx" => "orders#thanx"
     resources :orders, only: [:new, :index, :show, :create]
     root to: "homes#top"
-    get '/home/about' => 'homes#about', as: 'about'
+    get "/about" => 'homes#about', as: 'about'
   end
 
 
