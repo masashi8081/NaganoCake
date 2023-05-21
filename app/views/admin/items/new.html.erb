@@ -1,5 +1,10 @@
-<h1>商品新規登録</h1>
-<div class="row">
+<div class="container">
+  <div class="row">
+    <div class="col">
+      <h1>商品新規登録</h1>
+    </div>
+  </div>
+  <div class="row">
     <div class="col-sm-10 px-sm-0 mx-auto mb-5">
       <%= form_with model: @item, url: admin_items_path, local: true do |f| %>
       <table>
@@ -35,5 +40,6 @@
       <% end %>
       </table>
     </div>
+  </div>
 </div>
 
