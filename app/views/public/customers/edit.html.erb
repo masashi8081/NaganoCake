@@ -1,47 +1,51 @@
-<h1>登録情報編集</h1>
+<div class="container">
+  <div class="row">
+    <div class="col-sm-6 px-sm-0 offset-sm-1 ">
+      <h1>登録情報編集</h1>
+    </div>
+  </div>
+  <%= form_for (@customer) do |f| %>
 
-<%= form_for (@customer) do |f| %>
-
-  <div class="field">
-    <%= f.label :名前 %><br />
-    <%= f.label :（姓） %><br />
-    <%= f.text_field :last_name, autofocus: true %><br />
-    <%= f.label :（名） %><br />
-    <%= f.text_field :first_name %>
+  <div class="row">
+    <div class="col-2 text-left-md-2"><%= f.label :名前 %></div>
+    <div class="col-3"><%= f.text_field :last_name, autofocus: true %></div>
+    <div class="col-3"><%= f.text_field :first_name %></div>
   </div>
 
-  <div class="field">
-    <%= f.label :フリガナ %><br />
-    <%= f.label :（セイ） %><br />
-    <%= f.text_field :last_name_kana %><br />
-    <%= f.label :（メイ） %><br />
-    <%= f.text_field :first_name_kana %>
+  <div class="row">
+    <div class="col-2 text-left-md-2"><%= f.label :フリガナ %></div>
+    <div class="col-3"><%= f.text_field :last_name_kana %></div>
+    <div class="col-3"><%= f.text_field :first_name_kana %></div>
   </div>
 
-  <div class="field">
-    <%= f.label :郵便番号（ハイフンなし） %><br />
-    <%= f.text_field :postal_code %>
+  <div class="row">
+    <div class="col-3 text-left"><%= f.label :郵便番号 %></div>
+    <div class="col-3"><%= f.text_field :postal_code %></div>
   </div>
 
-  <div class="field">
-    <%= f.label :住所 %><br />
-    <%= f.text_field :address %>
+  <div class="row">
+    <div class="col-3 text-left"><%= f.label :住所 %></div>
+    <div class="col-3"><%= f.text_field :address, :size => "50" %></div>
   </div>
 
-  <div class="field">
-    <%= f.label :電話番号（ハイフンなし） %><br />
-    <%= f.text_field :telephone_number %>
+  <div class="row">
+    <div class="col-3 text-left"><%= f.label :電話番号 %></div>
+    <div class="col-3"><%= f.text_field :telephone_number %></div>
   </div>
 
-  <div class="field">
-    <%= f.label :メールアドレス %><br />
-    <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
+  <div class="row">
+    <div class="col-3 text-left"><%= f.label :メールアドレス %></div>
+    <div class="col-3"><%= f.email_field :email, autofocus: true, autocomplete: "email" %></div>
   </div>
 
-  <div class="actions">
-    <%= f.submit "編集内容を保存" %>
+  <div class="row">
+    <div class="col-3">
+      <%= f.submit "編集内容を保存", class: "btn btn-success px-4 mb-2" %>
+    </div>
+      <% end %>
+    <div class="col-3">
+      <%= link_to "退会する", customers_quit_path, class: "btn btn-danger px-4 mb-2"%>
+    </div>
   </div>
-<% end %>
-
-<%= link_to "退会する", customers_quit_path, class: "btn btn-danger withdrawal_page_btn"%>
+</div>
 

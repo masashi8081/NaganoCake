@@ -14,24 +14,30 @@ class Public::OrdersController < ApplicationController
 
   def show
     @order = Order.find(params[:id])
-    @order_items = Item.where(order_id: @order.id)
 
 
   end
 
   def confirm
     @order = Order.new(order_params)
-    @address = Address.find(params[:order][:address_id])
-    @order.postal_code = @address.postal_code
-    @order.address = @address.address
-    @order.name = @address.name
+    @customer = current_customer
+    @cart_items = CartItem.where(customer_id: current_customer.id)
+
+    if params[:order][:address_number] == '0'
+       @order.postal_code = @customer.postal_code
+       @order.address = @customer.address
+       @order.name = @customer.last_name + @customer.first_name
+    elsif params[:order][:address_number] == '1'
+        @order.postal_code = params[:order][:postal_code]
+      @order.address = params[:order][:address]
+      @order.name = params[:order][:name]
+    end
   end
 
  def create
     @order = Order.new(order_params)
     @order.customer_id = current_customer.id
     @order.pastage = 800
-    @order.total_amount = current_customer.id
 
     if @order.save
       @cart_items = CartItem.where(customer_id: current_customer.id)
