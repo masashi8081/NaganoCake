@@ -12,6 +12,7 @@
             <th class="table-active">会員ID</th>
             <th class="table-active">氏名</th>
             <th class="table-active">メールアドレス</th>
+            <th class="table-active">ステータス</th>
           </tr>
         </thead>
         <tbody>
@@ -20,10 +21,18 @@
               <td class="align-middle"><%= customer.id %></td>
               <td class="align-middle"><u><%= link_to customer.last_name + customer.first_name, admin_customer_path(customer.id), class:"font-weight-bold" %></u></td>
               <td class="align-middle"><%= customer.email %></td>
+              <td class="align-middle">
+                <% if customer.is_deleted == false %>
+                  <p class="text-success font-weight-bold">有効</p>
+                <% else %>
+                  <p class="text-secondary">退会</p>
+                <% end %>
+              </td>
             </tr>
           <% end %>
         </tbody>
       </table>
     </div>
   </div>
+  <%= paginate @customers, class:"text-center" %>
 </div>

@@ -35,6 +35,14 @@
       <div class="col-3 offset-md-1"><%= f.label "電話番号(ハイフンなし)" %></div>
       <div class="col-3"><%= f.text_field :telephone_number, placeholder: "08012345678" %></div>
     </div>
+    <div class="row">
+      <div class="col-3 offset-md-1"><%= f.label "会員ステータス" %></div>
+      <div class="col-3"><%= f.radio_button :is_deleted, :false %>
+        <%= f.label :is_deleted, "有効" %>
+        <%= f.radio_button :is_deleted, :true %>
+        <%= f.label :is_deleted, "退会" %>
+      </div>
+    </div>
 
     <div class="row mb-2">
       <div class="col-lg-6 px-sm-0 offset-sm-1">

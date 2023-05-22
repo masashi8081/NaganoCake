@@ -35,6 +35,14 @@
           <th class="table-active">メールアドレス</th>
           <td><%= @customer.email %></td>
         </tr>
+        <tr>
+          <th class="table-active">会員ステータス</th>
+          <% if @customer.is_deleted == false %>
+          <td class="text-success font-weight-bold">有効</td>
+          <% else %>
+          <td class="text-secondary">退会</td>
+          <% end %>
+        </tr>
 
       </table>
     </div>

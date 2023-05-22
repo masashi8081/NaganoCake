@@ -7,43 +7,43 @@
   <%= render "public/shared/error_messages", resource: resource %>
 
   <div class="row">
-    <div class="col-2 text-left-md-2"><%= f.label :名前 %></div>
-    <div class="col-0 text-right pr-0"><%= f.label :（姓） %></div>
-    <div class="col-0"><%= f.text_field :last_name, autofocus: true %></div>
+    <div class="col-2 offset-md-1"><%= f.label :名前 %></div>
+    <div class="col-1 text-right pr-0"><%= f.label :（姓） %></div>
+    <div class="col-1"><%= f.text_field :last_name, :size => "10", autofocus: true %></div>
     <div class="col-1 text-right pr-0"><%= f.label :（名） %></div>
-    <div class="col-0"><%= f.text_field :first_name %></div>
+    <div class="col-1"><%= f.text_field :first_name, :size => "10" %></div>
   </div>
 
   <div class="row">
-    <div class="col-2 text-left-md-2"><%= f.label :フリガナ %></div>
-    <div class="col-0 text-right pr-0"><%= f.label :（セイ） %></div>
-    <div class="col-0"><%= f.text_field :last_name_kana %></div>
-    <div class="col-1 text-right"><%= f.label :（メイ） %></div>
-    <div class="col-0"><%= f.text_field :first_name_kana %></div>
+    <div class="col-2 offset-md-1"><%= f.label :フリガナ %></div>
+    <div class="col-1 text-right pr-0"><%= f.label :（セイ） %></div>
+    <div class="col-1"><%= f.text_field :last_name_kana, :size => "10" %></div>
+    <div class="col-1 text-right pr-0"><%= f.label :（メイ） %></div>
+    <div class="col-1"><%= f.text_field :first_name_kana, :size => "10" %></div>
   </div>
 
   <div class="row">
-    <div class="col-3 text-left"><%= f.label :郵便番号（ハイフンなし） %></div>
-    <div class="col-3"><%= f.text_field :postal_code %></div>
+    <div class="col-3 offset-md-1"><%= f.label :郵便番号（ハイフンなし） %></div>
+    <div class="col-2"><%= f.text_field :postal_code %></div>
   </div>
 
   <div class="row">
-    <div class="col-3 text-left"><%= f.label :住所 %></div>
+    <div class="col-3 offset-md-1"><%= f.label :住所 %></div>
     <div class="col-3"><%= f.text_field :address, :size => "50" %></div>
   </div>
 
   <div class="row">
-    <div class="col-3 text-left"><%= f.label :電話番号（ハイフンなし） %></div>
+    <div class="col-3 offset-md-1"><%= f.label :電話番号（ハイフンなし） %></div>
     <div class="col-3"><%= f.text_field :telephone_number %></div>
   </div>
 
   <div class="row">
-    <div class="col-3 text-left"><%= f.label :メールアドレス %></div>
+    <div class="col-3 offset-md-1"><%= f.label :メールアドレス %></div>
     <div class="col-3"><%= f.email_field :email, autofocus: true, autocomplete: "email" %></div>
   </div>
 
   <div class="row">
-    <div class="col-3 text-left"><%= f.label :パスワード %>
+    <div class="col-3 offset-md-1"><%= f.label :パスワード %>
       <% if @minimum_password_length %>
       <em>(<%= @minimum_password_length %> 文字以上)</em>
       <% end %>
@@ -52,14 +52,16 @@
   </div>
 
   <div class="row">
-    <div class="col-3 text-left"><%= f.label :パスワード（確認用） %></div>
+    <div class="col-3 offset-md-1"><%= f.label :パスワード（確認用） %></div>
     <div class="col-3"><%= f.password_field :password_confirmation, autocomplete: "new-password" %></div>
   </div>
 
-    <div class="actions">
-      <%= f.submit "新規登録" %>
+  <div class="row">
+    <div class="col-2 offset-md-1 mt-3 mb5">
+      <%= f.submit "新規登録", class:"btn btn-success" %>
     </div>
     <% end %>
+  </div>
 
   <div class="row">
     <div class="col-5"><%= render "public/shared/links" %></div>

@@ -1,4 +1,7 @@
 class CartItem < ApplicationRecord
+
+  validates :amount, numericality: { only_integer: true }
+
   belongs_to :customer
   belongs_to :item
 
