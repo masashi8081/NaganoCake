@@ -1,6 +1,7 @@
 class Public::CartItemsController < ApplicationController
   def index
     @cart_items = CartItem.where(customer_id: current_customer.id)
+    @cart_item = CartItem.new
   end
 
   def create
@@ -36,10 +37,10 @@ class Public::CartItemsController < ApplicationController
   end
 
   def destroy
-    @cart_item = CartItem.find(params[:id])
-    @cart_item.destroy
+    cart_item = CartItem.find(params[:id])
+    cart_item.destroy
     flash[:success] = "商品を削除しました"
-    redirect_to cart_items_path
+    redirect_to cart_items_path(@cart_items)
   end
 
   private

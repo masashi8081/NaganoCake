@@ -9,7 +9,7 @@ class Public::OrdersController < ApplicationController
   end
 
   def index
-    @orders = Order.where(customer_id: current_customer.id).order(created_at: :desc)
+    @orders_all = Order.where(customer_id: current_customer.id).order(created_at: :desc)
   end
 
   def show
@@ -24,13 +24,13 @@ class Public::OrdersController < ApplicationController
     @cart_items = CartItem.where(customer_id: current_customer.id)
 
     if params[:order][:address_number] == '0'
-       @order.postal_code = @customer.postal_code
-       @order.address = @customer.address
-       @order.name = @customer.last_name + @customer.first_name
+       @order.postal_code = current_customer.postal_code
+       @order.address = current_customer.address
+       @order.name = current_customer.last_name + current_customer.first_name
     elsif params[:order][:address_number] == '1'
         @order.postal_code = params[:order][:postal_code]
-      @order.address = params[:order][:address]
-      @order.name = params[:order][:name]
+        @order.address = params[:order][:address]
+        @order.name = params[:order][:name]
     end
   end
 
@@ -62,7 +62,7 @@ class Public::OrdersController < ApplicationController
   private
 
   def order_params
-    params.require(:order).permit(:postal_code, :address, :name, :total_amount, :payment_method)
+    params.require(:order).permit(:postal_code, :address, :name, :total_amount, :payment_method, :pastage)
   end
 
 end

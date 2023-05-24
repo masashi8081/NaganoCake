@@ -44,7 +44,7 @@
                 <% end %>
               </td>
               <td class="align-middle"><%= (cart_item.subtotal).to_s(:delimited) %></td>
-              <td class="align-middle text-center"><%= link_to "削除する", cart_items_path(cart_item), class: "btn btn-danger", id: "cart-item-delete-#{i}", method: :delete, data: { confirm: '削除しますか？' } %></td>
+              <td class="align-middle text-center"><%= link_to "削除する", cart_item_path(@cart_items.ids), class: "btn btn-danger", id: "cart-item-delete-#{i}", method: :delete, data: { confirm: '削除しますか？' } %></td>
             </tr>
             <% @total_amount +=  cart_item.subtotal %>
           <% end %>

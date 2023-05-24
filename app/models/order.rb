@@ -6,7 +6,7 @@ class Order < ApplicationRecord
 
   validates :total_amount, presence: true
   validates :payment_method, presence: true
-  validates :postage, presence: true
+  validates :pastage, presence: true
   validates :address, length: { in: 1..48 }
   validates :postal_code, presence: true
   validates :name, length: { in: 1..32 }
