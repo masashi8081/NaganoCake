@@ -12,5 +12,6 @@ class Order < ApplicationRecord
   validates :name, length: { in: 1..32 }
 
 
+
   enum payment_method: { credit_card: 0, transfer: 1 }
 end

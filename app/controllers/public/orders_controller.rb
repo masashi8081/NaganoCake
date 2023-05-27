@@ -22,20 +22,22 @@ class Public::OrdersController < ApplicationController
     @order = Order.new(order_params)
     @customer = current_customer
     @cart_items = CartItem.where(customer_id: current_customer.id)
-
+    @order.customer_id = current_customer.id
     if params[:order][:address_number] == '0'
-       @order.postal_code = current_customer.postal_code
-       @order.address = current_customer.address
-       @order.name = current_customer.last_name + current_customer.first_name
+       @order.postal_code = @customer.postal_code
+       @order.address = @customer.address
+       @order.name = @customer.last_name + @customer.first_name
+
     elsif params[:order][:address_number] == '1'
         @order.postal_code = params[:order][:postal_code]
         @order.address = params[:order][:address]
         @order.name = params[:order][:name]
+
     end
   end
 
  def create
-    @order = Order.new(order_params)
+    @order = current_customer.orders.new(order_params)
     @order.customer_id = current_customer.id
     @order.pastage = 800
 

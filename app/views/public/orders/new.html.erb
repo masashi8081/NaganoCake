@@ -10,10 +10,10 @@
       <%= f.label :payment_method_transfer, Order.payment_methods_i18n[:transfer] %>
 
       <h4 class="h4 mt-2"><b>お届け先</b></h4>
-      <%= f.radio_button :address_nunber, 0, checked: true, class: "ml-4"  %>ご自身の住所<br>
+      <%= f.radio_button :address_number, 0, checked: true, class: "ml-4"  %>ご自身の住所<br>
       <div class="ml-5"><%= "〒#{current_customer.postal_code} #{current_customer.address}" %></div>
       <div class="ml-5"><%= current_customer.last_name + current_customer.first_name  %></div>
-      <%= f.radio_button :address_nunber, 1, class: "ml-4 mt-3"  %>新しいお届け先<br>
+      <%= f.radio_button :address_number, 1, class: "ml-4 mt-3"  %>新しいお届け先<br>
       <table class="ml-5">
         <tr>
           <td>郵便番号（ハイフン無し）</td>
